@@ -26,9 +26,19 @@ class LinkedList{
     }
 
     public function traverse(){
+        $vowels = ["a","e","i","o","u"];
         $currentNode = $this->firstNode;
         while($currentNode !== NULL){
-            echo $currentNode->data . " ";
+            
+            $value=$currentNode->data;
+            foreach(str_split($value) as $letter){
+
+                if (in_array($letter, $vowels)){
+
+                    echo $currentNode->data . " ";
+                    
+                }
+            }
             $currentNode=$currentNode->next;
         }
 
