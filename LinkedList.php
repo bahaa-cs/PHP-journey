@@ -13,8 +13,8 @@ class LinkedList{
 
     public function insert($data){
         $newNode = new ListNode($data);
-        if ($this->fisrtNode === NULL){
-            $this->firsNode = $newNode;
+        if ($this->firstNode === NULL){
+            $this->firstNode = $newNode;
         }
         else{
             $currentNode = $this->firstNode;
@@ -23,6 +23,15 @@ class LinkedList{
             $currentNode->next = $newNode;
         }
         
+    }
+
+    public function traverse(){
+        $currentNode = $this->firstNode;
+        while($currentNode !== NULL){
+            echo $currentNode->data . " ";
+            $currentNode=$currentNode->next;
+        }
+
     }
 }
 
