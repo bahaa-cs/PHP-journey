@@ -9,5 +9,21 @@ function generateArray($length){
 
 $unsortedArray = generateArray(15);
 
+
+function split($arr,$startIndex,$endIndex,$result){
+    if ($indexEnd - $indexStart <=1)
+    return
+
+    $middleIndex = intval(($startIndex - $endIndex)/2)
+
+    split($result,$startIndex,$middleIndex,$arr)
+    split($result,$middleIndex,$endIndex,$arr)
+
+    merge($arr, $startIndex, $middleIndex, $endIndex,$result)
+}
+
+
+
+
 echo json_encode(["unsorted array: "=>$unsortedArray]);
 
