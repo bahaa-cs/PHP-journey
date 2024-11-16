@@ -9,8 +9,17 @@ function isPalindrome($word){
     
     return $reversedWord == $word;
 }
-$word="madam";
+$word=$_POST['word'] ?? null;
 
-$result = isPalindrome($word);
+if($word){
 
-echo $result ? json_encode(["Result: "=>"$word is Palindrome"]) : json_encode(["Result: "=>"$word is not Palindrome"]) ;
+    $result = isPalindrome($word);
+    
+    echo $result ? json_encode(["Result: "=>"$word is Palindrome"]) : json_encode(["Result: "=>"$word is not Palindrome"]) ;
+}
+else{
+    echo json_encode([
+        "message"=>"Mising <word> input"
+    ]);
+}
+
