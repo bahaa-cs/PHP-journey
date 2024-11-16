@@ -7,3 +7,10 @@ class ListNode {
         $this->data = $data;
     }
 }
+
+$list = new LinkedList();
+$list->insert("testing");
+$list->insert("debugging");
+$list->insert("project");
+
+
