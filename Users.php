@@ -3,10 +3,12 @@
 class User{
     public $name;
     public $password;
+    public $email;
 
-    public function __construct($name, $password){
+    public function __construct($name, $password, $email){
         $this->name = $name;
         $this->password = $password;
+        $this->email = $email;
     }
     public static function check_password($password){
         if(
@@ -19,22 +21,30 @@ class User{
         else
         return False;
     }
+    public static function validate_email($email){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            return False;
+        else
+            return True;
+    }
 }
 $name=$_POST["name"] ?? null;
 $password = $_POST["password"] ?? null;
-if(is_null($name) || is_null($password)){
+$email = $_POST["email"] ?? null;
+if(is_null($name) || is_null($password) || is_null($email) ){
     echo json_encode([
-        "Strong Password: "=>check_password($password)
+        "Message: "=>"Null values for <name>, <password>, or <email> "
     ]);
 }
 else{
-    echo json_encode([
-        "Strong Password: "=>User::check_password($password)
-    ]);
-    $user1 = new User($name, $password);
+    $user1 = new User($name, $password, $email);
+    $data = [
+        "name" => $user1->name,
+        "password" => $user1->password,
+        "email" => $user1->email,
+        "Strong Password" => User::check_password($password),
+        "Email Validation" => User::validate_email($email)
+    ];
     
-    echo json_encode([
-        "name: "=>$user1->name,
-        "password: "=>$user1->password
-    ]);
+    echo json_encode($data);
 }
