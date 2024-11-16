@@ -27,6 +27,15 @@ class User{
         else
             return True;
     }
+    public function copy_with($name = NULL, $email =  NuLL, $password=NULL) {
+        $userCopy = new User(
+            $name ?? $this->name,
+            $email ?? $this->email,
+            $password ?? $this->password
+        );
+        return $userCopy;
+    }
+
 }
 $name=$_POST["name"] ?? null;
 $password = $_POST["password"] ?? null;
@@ -38,6 +47,9 @@ if(is_null($name) || is_null($password) || is_null($email) ){
 }
 else{
     $user1 = new User($name, $password, $email);
+    $newEmail= "bahabaha@gmail.com";
+    $user2 = $user1->copy_with($newEmail);
+
     $data = [
         "name" => $user1->name,
         "password" => $user1->password,
